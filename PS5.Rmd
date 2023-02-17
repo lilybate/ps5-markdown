@@ -1,0 +1,38 @@
+---
+title: "PS5"
+author: "Lily Bates"
+date: "2023-02-14"
+output: html_document
+---
+
+## 1. Load and Check Data
+```{r}
+
+library(tidyverse)
+library(readr)
+
+gapminder <- read_delim("gapminder.csv.bz2")
+
+dim(gapminder)
+
+gapminder %>% 
+  sample_n(3)
+```
+
+This data looks good!
+
+## 2. Descriptive Statistics
+
+```{r}
+num_names <- gapminder %>% 
+  summarize(n = n_distinct(name))
+
+num_iso3 <- gapminder %>% 
+  summarize(n = n_distinct(iso3))
+
+num_iso2 <- gapminder %>% 
+  summarize(n = n_distinct(iso2))
+```
+
+In the gapminder dataset , there are `r num_names` names, `r num_iso3` 3-digit
+country codes, and `r num_iso2` 2-digit country codes. 
